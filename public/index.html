@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    
+</head>
+<body>
+    <h1>Todo App</h1>
+    <div id="app">
+        <form @submit.prevent="addTodo">
+            <input type="text" name="title" v-model="addTodoItem">
+            
+            <input type="submit" value="Add">
+        </form>
+
+        <ul>
+            <li v-for="todoItem in todoItems" :key="todoItem._id">
+                <input type="checkbox" name="done" :checked="todoItem.done" @change="checkTodo(todoItem.done, todoItem._id)">
+                {{ todoItem.title }}
+                <button @click="deleteTodo(todoItem._id)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

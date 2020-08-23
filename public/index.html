@@ -19,6 +19,7 @@
             <li v-for="todoItem in todoItems" :key="todoItem._id">
                 <input type="checkbox" name="done" :checked="todoItem.done" @change="checkTodo(todoItem.done, todoItem._id)">
                 {{ todoItem.title }}
+                <button @click="editTitle(todoItem._id, todoItem.title)">Edit</button>
                 <button @click="deleteTodo(todoItem._id)">Delete</button>
             </li>
         </ul>

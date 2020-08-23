@@ -7,6 +7,7 @@ router.get('/allTodos', todoController.getAllTodos)
 router.post('/addTodo', todoController.addTodo)
 router.delete('/deleteTodo/:id', todoController.deleteTodo)
 router.patch('/checkTodo/:id', todoController.checkTodo)
+router.patch('/editTitle/:id', todoController.editTitle)
 
 
 module.exports = router

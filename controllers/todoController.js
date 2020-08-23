@@ -21,4 +21,10 @@ async function checkTodo(req, res) {
     res.json(await todoModel.updateTodoDone(todoId, todoDone))
 }
 
-module.exports = { getAllTodos, addTodo, deleteTodo, checkTodo }
+async function editTitle(req, res) {
+    const todoId = req.params.id
+    const todoTitle = req.body.todoTitle
+    res.json(await todoModel.updateTodoTitle(todoId, todoTitle))
+}
+
+module.exports = { getAllTodos, addTodo, deleteTodo, checkTodo, editTitle }

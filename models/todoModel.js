@@ -50,5 +50,16 @@ function updateTodoDone(id, done) {
     })
 }
 
+function updateTodoTitle(id, title) {
+    return new Promise((resolve, reject) => {
+        todoCollection.update({ _id: id }, {$set: { title }}, {}, (err, todoUpdated) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(todoUpdated)
+        })
+    })
+}
 
-module.exports = {findAllTodos, insertTodo, removeTodo, updateTodoDone}
+
+module.exports = {findAllTodos, insertTodo, removeTodo, updateTodoDone, updateTodoTitle}

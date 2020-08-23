@@ -53,6 +53,29 @@ const app = new Vue({
                 console.error('Error:', error);
             });
         },
+        async editTitle(todoId, todoTitle) {
+            let editTitleText = prompt('edit the title', todoTitle)
+            if (editTitleText != null) {
+                const data = {
+                    todoTitle: editTitleText
+                }
+                fetch(`${apiURL}/editTitle/${todoId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Success:', result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+                await this.dataRefresh()
+            }
+        },
         async deleteTodo(todoId) {
             fetch(`${apiURL}/deleteTodo/${todoId}`, {
                 method: 'DELETE'

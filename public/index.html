@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
-    
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
     <h1>Todo App</h1>
     <div id="app">
         <form @submit.prevent="addTodo">
             <input type="text" name="title" v-model="addTodoItem">
-            
             <input type="submit" value="Add">
         </form>
 

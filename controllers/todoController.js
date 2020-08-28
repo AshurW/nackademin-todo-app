@@ -18,13 +18,15 @@ async function deleteTodo(req, res) {
 async function checkTodo(req, res) {
     const todoId = req.params.id
     const todoDone = req.body.todoDone
-    res.json(await todoModel.updateTodoDone(todoId, todoDone))
+    const user = {id: req.user._id, role: req.user.role}
+    res.json(await todoModel.updateTodoDone(todoId, todoDone, user))
 }
 
 async function editTitle(req, res) {
     const todoId = req.params.id
     const todoTitle = req.body.todoTitle
-    res.json(await todoModel.updateTodoTitle(todoId, todoTitle))
+    const user = {id: req.user._id, role: req.user.role}
+    res.json(await todoModel.updateTodoTitle(todoId, todoTitle, user))
 }
 
 module.exports = { getAllTodos, addTodo, deleteTodo, checkTodo, editTitle }

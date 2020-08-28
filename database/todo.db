@@ -1,5 +1,5 @@
-{"title":"user todo test","done":"false","createdBy":"kyqvVq5iZhnpSnKC","_id":"njyouwdZcbe87ZgI","createdAt":{"$$date":1598608095366},"updatedAt":{"$$date":1598608095366}}
-{"$$deleted":true,"_id":"njyouwdZcbe87ZgI"}
+{"title":"user test todo","done":"false","createdBy":"j1v5Nb3ZpvPhe3fF","_id":"PizgcUcmUBFPAppJ","createdAt":{"$$date":1598614380363},"updatedAt":{"$$date":1598614380363}}
 {"title":"admin test todo","done":"false","createdBy":"kyqvVq5iZhnpSnKC","_id":"onRhqoHbgJBM3FhX","createdAt":{"$$date":1598608511870},"updatedAt":{"$$date":1598608511870}}
-{"title":"user test todo","done":"false","createdBy":"j1v5Nb3ZpvPhe3fF","_id":"Bgtd3LAQq0LsX6g2","createdAt":{"$$date":1598608583531},"updatedAt":{"$$date":1598608583531}}
-{"$$deleted":true,"_id":"Bgtd3LAQq0LsX6g2"}
+{"title":"user test todo","createdBy":"j1v5Nb3ZpvPhe3fF","_id":"PizgcUcmUBFPAppJ","createdAt":{"$$date":1598614380363},"updatedAt":{"$$date":1598614773976}}
+{"title":"user test todo","done":"true","createdBy":"j1v5Nb3ZpvPhe3fF","_id":"PizgcUcmUBFPAppJ","createdAt":{"$$date":1598614380363},"updatedAt":{"$$date":1598614835082}}
+{"title":"update the title","done":"true","createdBy":"j1v5Nb3ZpvPhe3fF","_id":"PizgcUcmUBFPAppJ","createdAt":{"$$date":1598614380363},"updatedAt":{"$$date":1598614894637}}

@@ -58,25 +58,63 @@ function removeTodo(id, user) {
     })
 }
 
-function updateTodoDone(id, done) {
+function updateTodoDone(id, done, user) {
     return new Promise((resolve, reject) => {
-        todoCollection.update({ _id: id }, {$set: { done }}, {}, (err, todoUpdated) => {
-            if (err) {
-                console.log(err)
-            }
-            resolve(todoUpdated)
-        })
+        if(user.role !== 'admin') {
+            todoCollection.find({ _id: id }, (err, docs) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    if (docs[0].createdBy !== user.id) {
+                        resolve({message: 'you cant do that'})
+                    } else {
+                        todoCollection.update({ _id: id }, {$set: { done }}, {}, (err, todoUpdated) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            resolve(todoUpdated)
+                        })
+                    }
+                }
+            })
+        } else {
+            todoCollection.update({ _id: id }, {$set: { done }}, {}, (err, todoUpdated) => {
+                if (err) {
+                    console.log(err)
+                }
+                resolve(todoUpdated)
+            })
+        }
     })
 }
 
-function updateTodoTitle(id, title) {
+function updateTodoTitle(id, title, user) {
     return new Promise((resolve, reject) => {
-        todoCollection.update({ _id: id }, {$set: { title }}, {}, (err, todoUpdated) => {
-            if (err) {
-                console.log(err)
-            }
-            resolve(todoUpdated)
-        })
+        if(user.role !== 'admin') {
+            todoCollection.find({ _id: id }, (err, docs) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    if (docs[0].createdBy !== user.id) {
+                        resolve({message: 'you cant do that'})
+                    } else {
+                        todoCollection.update({ _id: id }, {$set: { title }}, {}, (err, todoUpdated) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            resolve(todoUpdated)
+                        })
+                    }
+                }
+            })
+        } else {
+            todoCollection.update({ _id: id }, {$set: { title }}, {}, (err, todoUpdated) => {
+                if (err) {
+                    console.log(err)
+                }
+                resolve(todoUpdated)
+            })
+        }
     })
 }
 

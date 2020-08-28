@@ -2,3 +2,4 @@
 {"title":"first task","done":false,"_id":"PpkHiYUjbFXV4vqT","createdAt":{"$$date":1598175757459},"updatedAt":{"$$date":1598175757459}}
 {"title":"pppp","done":false,"_id":"aTHF9Kd1UWVIJo0X","createdAt":{"$$date":1598175801663},"updatedAt":{"$$date":1598175801663}}
 {"title":"thrid task","done":false,"_id":"dPY2mDgnSMPhzKXA","createdAt":{"$$date":1598175772152},"updatedAt":{"$$date":1598175772152}}
+{"title":"testing with auth","done":"false","_id":"BGaiJVANWJm4f938","createdAt":{"$$date":1598600000750},"updatedAt":{"$$date":1598600000750}}

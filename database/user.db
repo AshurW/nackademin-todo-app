@@ -1,1 +1,2 @@
-{"username":"ashur","password":"$2a$10$Uw4yaZjBzN8VpOHPXkY2SejDc5TqB11Oo/1MnuxvjceWdFQvTv7im","_id":"y1OSPsPmIeyq8Ezc","createdAt":{"$$date":1598549703005},"updatedAt":{"$$date":1598549703005}}
+{"username":"kevin","password":"$2a$10$/kswjVC3lMLYtJqw8NEhAOPQ9S.5AiL.2yfBady3yQw/YVZr3jjbu","role":"user","_id":"j1v5Nb3ZpvPhe3fF","createdAt":{"$$date":1598606488479},"updatedAt":{"$$date":1598606488479}}
+{"username":"ashur","password":"$2a$10$/j27fC.EYexEmQZhTCp5o..7blfK9qkbL1RhauoPstrEClylYeaO6","role":"admin","_id":"kyqvVq5iZhnpSnKC","createdAt":{"$$date":1598604084821},"updatedAt":{"$$date":1598604084821}}

@@ -5,13 +5,14 @@ async function getAllTodos(req, res) {
 }
 
 async function addTodo(req, res) {
-    const todo = { title: req.body.todoTitle, done: req.body.todoDone }
+    const todo = { title: req.body.todoTitle, done: req.body.todoDone, createdBy: req.user._id }
     res.send(await todoModel.insertTodo(todo))
 }
 
 async function deleteTodo(req, res) {
     const todoId = req.params.id
-    res.json(await todoModel.removeTodo(todoId))
+    const user = {id: req.user._id, role: req.user.role}
+    res.json(await todoModel.removeTodo(todoId, user))
 }
 
 async function checkTodo(req, res) {

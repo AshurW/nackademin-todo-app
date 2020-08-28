@@ -1,5 +1,5 @@
-{"title":"second task","done":false,"_id":"HacpCzare1qzMMbG","createdAt":{"$$date":1598175762537},"updatedAt":{"$$date":1598175762537}}
-{"title":"first task","done":false,"_id":"PpkHiYUjbFXV4vqT","createdAt":{"$$date":1598175757459},"updatedAt":{"$$date":1598175757459}}
-{"title":"pppp","done":false,"_id":"aTHF9Kd1UWVIJo0X","createdAt":{"$$date":1598175801663},"updatedAt":{"$$date":1598175801663}}
-{"title":"thrid task","done":false,"_id":"dPY2mDgnSMPhzKXA","createdAt":{"$$date":1598175772152},"updatedAt":{"$$date":1598175772152}}
-{"title":"testing with auth","done":"false","_id":"BGaiJVANWJm4f938","createdAt":{"$$date":1598600000750},"updatedAt":{"$$date":1598600000750}}
+{"title":"user todo test","done":"false","createdBy":"kyqvVq5iZhnpSnKC","_id":"njyouwdZcbe87ZgI","createdAt":{"$$date":1598608095366},"updatedAt":{"$$date":1598608095366}}
+{"$$deleted":true,"_id":"njyouwdZcbe87ZgI"}
+{"title":"admin test todo","done":"false","createdBy":"kyqvVq5iZhnpSnKC","_id":"onRhqoHbgJBM3FhX","createdAt":{"$$date":1598608511870},"updatedAt":{"$$date":1598608511870}}
+{"title":"user test todo","done":"false","createdBy":"j1v5Nb3ZpvPhe3fF","_id":"Bgtd3LAQq0LsX6g2","createdAt":{"$$date":1598608583531},"updatedAt":{"$$date":1598608583531}}
+{"$$deleted":true,"_id":"Bgtd3LAQq0LsX6g2"}

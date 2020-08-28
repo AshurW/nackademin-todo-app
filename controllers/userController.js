@@ -7,7 +7,7 @@ const jwtSecret = 'this is a secret'
 
 async function createUser(req, res) {
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-        const newUser = {username: req.body.username, password: hashedPassword}
+        const newUser = {username: req.body.username, password: hashedPassword, role: req.body.role}
         res.send(await userModel.insertUser(newUser))
     })
 }

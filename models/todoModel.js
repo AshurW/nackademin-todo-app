@@ -28,14 +28,33 @@ function insertTodo(todo) {
     })
 }
 
-function removeTodo(id) {
+function removeTodo(id, user) {
     return new Promise((resolve, reject) => {
-        todoCollection.remove({ _id: id }, {}, (err, todoRemoved) => {
-            if (err) {
-                console.log(err)
-            }
-            resolve(todoRemoved)
-        })
+        if(user.role !== 'admin') {
+            todoCollection.find({ _id: id }, (err, docs) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    if (docs[0].createdBy !== user.id) {
+                        resolve({message: 'you cant do that'})
+                    } else {
+                        todoCollection.remove({ _id: id }, {}, (err, todoRemoved) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            resolve(todoRemoved)
+                        })
+                    }
+                }
+            })
+        } else {
+            todoCollection.remove({ _id: id }, {}, (err, todoRemoved) => {
+                if (err) {
+                    console.log(err)
+                }
+                resolve(todoRemoved)
+            })
+        }
     })
 }
 

@@ -11,22 +11,34 @@ async function addTodo(req, res) {
 
 async function deleteTodo(req, res) {
     const todoId = req.params.id
-    const user = {id: req.user._id, role: req.user.role}
-    res.json(await todoModel.removeTodo(todoId, user))
+    if (req.user.role !== 'admin') {
+        const docs = await todoModel.findOneTodo(todoId)
+        if (docs.createdBy !== req.user._id) return res.json({ message: 'You cant do that' })
+        return res.json(await todoModel.removeTodo(todoId, user))
+    }
+    return res.json(await todoModel.removeTodo(todoId, user))
 }
 
 async function checkTodo(req, res) {
     const todoId = req.params.id
     const todoDone = req.body.todoDone
-    const user = {id: req.user._id, role: req.user.role}
-    res.json(await todoModel.updateTodoDone(todoId, todoDone, user))
+    if (req.user.role !== 'admin') {
+        const docs = await todoModel.findOneTodo(todoId)
+        if (docs.createdBy !== req.user._id) return res.json({ message: 'You cant do that' })
+        return res.json(await todoModel.updateTodoDone(todoId, todoDone))
+    }
+    return res.json(await todoModel.updateTodoDone(todoId, todoDone))
 }
 
 async function editTitle(req, res) {
     const todoId = req.params.id
     const todoTitle = req.body.todoTitle
-    const user = {id: req.user._id, role: req.user.role}
-    res.json(await todoModel.updateTodoTitle(todoId, todoTitle, user))
+    if (req.user.role !== 'admin') {
+        const docs = await todoModel.findOneTodo(todoId)
+        if (docs.createdBy !== req.user._id) return res.json({ message: 'You cant do that' })
+        return res.json(await todoModel.updateTodoTitle(todoId, todoTitle))
+    }
+    res.json(await todoModel.updateTodoTitle(todoId, todoTitle))
 }
 
 module.exports = { getAllTodos, addTodo, deleteTodo, checkTodo, editTitle }

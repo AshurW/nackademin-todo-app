@@ -28,14 +28,14 @@ function createList(todoList) {
     })
 }
 
-function insertTodoInList(item) {
+async function insertTodoInList(item) {
     return new Promise((resolve, reject) => {
-        const todoListArrayUpdated = todoListCollection.update({ _id: item.todoListId }, { $push: { todoArray: item.todoId } }, { returnUpdatedDocs: true }, (err, todoUpdated) => {
+        todoListCollection.update({ _id: item.todoListId }, { $push: { todoArray: item.todoId } }, { returnUpdatedDocs: true }, (err, todoUpdated, affectedDocuments) => {
             if (err) {
                 console.log(err)
             }
+            resolve({message: 'todo is added to todoList array', affectedDocuments})
         })
-        resolve({ message: 'Todo has been added', todoListArrayUpdated })
     })
 }
 

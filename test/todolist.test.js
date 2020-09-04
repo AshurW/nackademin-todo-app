@@ -7,12 +7,9 @@ const userModel = require('../models/userModel')
 
 describe('CRUD on todolist', () => {
     beforeEach(async () => {
-        await todoListModel.todoListCollection.remove({}, {multi: true}, function (err, numRemoved) {
-        });
-        await todoModel.todoCollection.remove({}, {}, function (err, numRemoved) {
-        });
-        await userModel.userCollection.remove({}, {}, function (err, numRemoved) {
-        });
+        await todoListModel.todoListCollection.remove({}, {multi: true});
+        await todoModel.todoCollection.remove({}, {multi: true});
+        await userModel.userCollection.remove({}, {multi: true});
     })
     it('should create a todolist', async () => {
         //arrange
@@ -36,8 +33,7 @@ describe('CRUD on todolist', () => {
         const insertTodoInList = await todoListModel.insertTodoInList({ todoListId: createdTodoList2._id, todoId: todo._id })
 
         //assert
-        console.log(insertTodoInList)
-        // expect(createdTodoList.todoArray).to.include(todo._id)
+        expect(insertTodoInList.affectedDocuments.todoArray).to.include(todo._id)
     })
 })
 

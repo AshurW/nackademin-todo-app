@@ -1,11 +1,16 @@
-{"todoListName":"Testing List","todoArray":["TdxitMSfZmXKeSJr","glh7bZ0Do4zAUOwB","IZz1YQKfdmUf9lnz"],"createdBy":"test user","_id":"4K3vvMWgVg7R33t6","createdAt":{"$$date":1599228714935},"updatedAt":{"$$date":1599228714943}}
-{"$$deleted":true,"_id":"4K3vvMWgVg7R33t6"}
-{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"TevZSBUp1EA0wRjp","createdAt":{"$$date":1599228759141},"updatedAt":{"$$date":1599228759141}}
-{"$$deleted":true,"_id":"TevZSBUp1EA0wRjp"}
-{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"XBZrAGhhKEJzP6nJ","createdAt":{"$$date":1599228759151},"updatedAt":{"$$date":1599228759151}}
-{"todoListName":"Testing List","todoArray":["ilZT4PD5YUawojmP"],"createdBy":"test user","_id":"XBZrAGhhKEJzP6nJ","createdAt":{"$$date":1599228759151},"updatedAt":{"$$date":1599228759161}}
-{"$$deleted":true,"_id":"XBZrAGhhKEJzP6nJ"}
-{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"AeuK64vlG5bxmZbh","createdAt":{"$$date":1599228759170},"updatedAt":{"$$date":1599228759170}}
-{"todoListName":"Testing List","todoArray":["a48biLJqTG1tJT45"],"createdBy":"test user","_id":"AeuK64vlG5bxmZbh","createdAt":{"$$date":1599228759170},"updatedAt":{"$$date":1599228759173}}
-{"todoListName":"Testing List","todoArray":["a48biLJqTG1tJT45","7aVRLM7CjrdHXlu0"],"createdBy":"test user","_id":"AeuK64vlG5bxmZbh","createdAt":{"$$date":1599228759170},"updatedAt":{"$$date":1599228759174}}
-{"todoListName":"Testing List","todoArray":["a48biLJqTG1tJT45","7aVRLM7CjrdHXlu0","nCNUYJzEPpLjMkAo"],"createdBy":"test user","_id":"AeuK64vlG5bxmZbh","createdAt":{"$$date":1599228759170},"updatedAt":{"$$date":1599228759175}}
+{"todoListName":"Testing List","todoArray":["hvm3zRxEmqHCfKDv","dSrC4i3lPWGJkeo4","7AjrxLEAPTSl8iOx"],"createdBy":"test user","_id":"EEuQ8e0IlElPWFyu","createdAt":{"$$date":1599241869343},"updatedAt":{"$$date":1599241869347}}
+{"$$deleted":true,"_id":"EEuQ8e0IlElPWFyu"}
+{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"Wxds6qS5dbk9GdEH","createdAt":{"$$date":1599241881306},"updatedAt":{"$$date":1599241881306}}
+{"$$deleted":true,"_id":"Wxds6qS5dbk9GdEH"}
+{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"6BlpG41fI5u772HD","createdAt":{"$$date":1599241881309},"updatedAt":{"$$date":1599241881309}}
+{"todoListName":"Testing List","todoArray":["ojfNAhAHpUNQHW28"],"createdBy":"test user","_id":"6BlpG41fI5u772HD","createdAt":{"$$date":1599241881309},"updatedAt":{"$$date":1599241881313}}
+{"$$deleted":true,"_id":"6BlpG41fI5u772HD"}
+{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"Cmo5vV9YOAINWfgk","createdAt":{"$$date":1599241881331},"updatedAt":{"$$date":1599241881331}}
+{"todoListName":"Testing List","todoArray":["MltkJ2HrPX3keSwY"],"createdBy":"test user","_id":"Cmo5vV9YOAINWfgk","createdAt":{"$$date":1599241881331},"updatedAt":{"$$date":1599241881337}}
+{"todoListName":"Testing List","todoArray":["MltkJ2HrPX3keSwY","AmnZuIQUcUnORyJZ"],"createdBy":"test user","_id":"Cmo5vV9YOAINWfgk","createdAt":{"$$date":1599241881331},"updatedAt":{"$$date":1599241881337}}
+{"todoListName":"Testing List","todoArray":["MltkJ2HrPX3keSwY","AmnZuIQUcUnORyJZ","4MnnC6qrsLyc5KEZ"],"createdBy":"test user","_id":"Cmo5vV9YOAINWfgk","createdAt":{"$$date":1599241881331},"updatedAt":{"$$date":1599241881338}}
+{"$$deleted":true,"_id":"Cmo5vV9YOAINWfgk"}
+{"todoListName":"Testing List","todoArray":[],"createdBy":"test user","_id":"KVybRn3Jfpn6V4UN","createdAt":{"$$date":1599241881342},"updatedAt":{"$$date":1599241881342}}
+{"todoListName":"Testing List","todoArray":["qw0LPOOIg3X8OMAY"],"createdBy":"test user","_id":"KVybRn3Jfpn6V4UN","createdAt":{"$$date":1599241881342},"updatedAt":{"$$date":1599241881344}}
+{"todoListName":"Testing List","todoArray":["qw0LPOOIg3X8OMAY","7GtFmxWnWF1gllms"],"createdBy":"test user","_id":"KVybRn3Jfpn6V4UN","createdAt":{"$$date":1599241881342},"updatedAt":{"$$date":1599241881345}}
+{"todoListName":"Testing List","todoArray":["qw0LPOOIg3X8OMAY","7GtFmxWnWF1gllms","2eyUWKWyrANmGtE2"],"createdBy":"test user","_id":"KVybRn3Jfpn6V4UN","createdAt":{"$$date":1599241881342},"updatedAt":{"$$date":1599241881345}}

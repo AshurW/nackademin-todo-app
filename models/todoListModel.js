@@ -42,6 +42,17 @@ function insertTodoInList(item) {
     })
 }
 
+function getTodoList(todoListId) {
+    return new Promise((resolve, reject) => {
+        todoListCollection.findOne({_id: todoListId}, (err, doc) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(doc)
+        })
+    })
+}
+
 function getTodoListAndAllTodo(todoListId) {
     return new Promise((resolve, reject) => {
         todoListCollection.findOne({_id: todoListId}, (err, doc) => {
@@ -61,4 +72,4 @@ function getTodoListAndAllTodo(todoListId) {
 }
 
 
-module.exports = { todoListCollection, createList, insertTodoInList, getTodoListAndAllTodo }
+module.exports = { todoListCollection, createList, insertTodoInList, getTodoList, getTodoListAndAllTodo }

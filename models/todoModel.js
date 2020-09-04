@@ -39,19 +39,6 @@ function findOneTodo(id) {
     })
 }
 
-function findMultiTodo(todoIdArray) {
-    return new Promise((resolve, reject) => {
-        console.log(todoIdArray)
-        todoCollection.find({ completeData: {_id: todoIdArray } }, (err, docs) => {
-            if (err) {
-                console.log(err)
-            }
-            console.log(docs)
-            resolve(docs)
-        })
-    })
-}
-
 function insertTodo(todo) {
     return new Promise((resolve, reject) => {
         todoCollection.insert(todo, (err, newDoc) => {
@@ -97,4 +84,4 @@ function updateTodoTitle(id, title, user) {
 }
 
 
-module.exports = { todoCollection, findAllTodos, findOneTodo, findMultiTodo, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }
+module.exports = { todoCollection, findAllTodos, findOneTodo, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }

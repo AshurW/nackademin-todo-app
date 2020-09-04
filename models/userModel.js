@@ -1,10 +1,21 @@
+require('dotenv').config()
 const dataStore = require('nedb')
 
-const userCollection = new dataStore({
-    filename: __dirname + '/../database/user.db', 
-    autoload: true, 
-    timestampData: true
-});
+var userCollection
+
+if (process.env.ENV === 'TEST') {
+    var userCollection = new dataStore({
+        filename: __dirname + '../database/test/todoList.db',
+        autoload: true,
+        timestampData: true
+    });
+} else {
+    var userCollection = new dataStore({
+        filename: __dirname + '../database/todoList.db',
+        autoload: true,
+        timestampData: true
+    });
+}
 
 function insertUser(user) {
     return new Promise((resolve, reject) => {
@@ -28,4 +39,4 @@ function loginUser(username) {
     })
 }
 
-module.exports = {insertUser, loginUser}
+module.exports = {userCollection, insertUser, loginUser}

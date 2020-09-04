@@ -1,10 +1,21 @@
+require('dotenv').config()
 const dataStore = require('nedb');
 
-const todoCollection = new dataStore({
-    filename: __dirname + '/../database/todo.db',
-    autoload: true,
-    timestampData: true
-});
+var todoCollection
+
+if (process.env.ENV === 'TEST') {
+    var todoCollection = new dataStore({
+        filename: __dirname + '../database/test/todoList.db',
+        autoload: true,
+        timestampData: true
+    });
+} else {
+    var todoCollection = new dataStore({
+        filename: __dirname + '../database/todoList.db',
+        autoload: true,
+        timestampData: true
+    });
+}
 
 function findAllTodos() {
     return new Promise((resolve, reject) => {
@@ -73,4 +84,4 @@ function updateTodoTitle(id, title, user) {
 }
 
 
-module.exports = { findAllTodos, findOneTodo, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }
+module.exports = { todoCollection, findAllTodos, findOneTodo, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }

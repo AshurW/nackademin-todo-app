@@ -71,5 +71,26 @@ function getTodoListAndAllTodo(todoListId) {
     })
 }
 
+function removeTodoListAndAllTodo(todoListId) {
+    return new Promise((resolve, reject) => {
+        todoListCollection.findOne({_id: todoListId}, (err, doc) => {
+            if (err) {
+                console.log(err)
+            }
+            let todos = []
+            for (const todoId of doc.todoArray) {
+                todos.push(todoModel.removeTodo(todoId))
+            }
+            Promise.all(todos)
+        })
+        todoListCollection.remove({_id: todoListId}, (err, numRemoved) => {
+            if (err) {
+                err
+            }
+            resolve({message: 'Removed all todos and the list'})
+        })
+    })
+}
 
-module.exports = { todoListCollection, createList, insertTodoInList, getTodoList, getTodoListAndAllTodo }
+
+module.exports = { todoListCollection, createList, insertTodoInList, getTodoList, getTodoListAndAllTodo, removeTodoListAndAllTodo }

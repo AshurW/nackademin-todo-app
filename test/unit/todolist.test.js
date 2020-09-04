@@ -61,26 +61,16 @@ describe('CRUD on todolist', () => {
         expect(todoListAndAllTodo.todoArray[1]).to.include({ title: 'Test Title2', done: 'false', createdBy: 'test user' })
         expect(todoListAndAllTodo.todoArray[2]).to.include({ title: 'Test Title3', done: 'false', createdBy: 'test user' })
     })
-    // it('should remove todolist and all of its todo', async () => {
-    //     //arrange
-    //     const todoList = { todoListName: 'Testing List', todoArray: [], createdBy: 'test user' }
-    //     const createdTodoList = await todoListModel.createList(todoList)
-    //     const todoItem = { title: 'Test Title1', done: 'false', createdBy: 'test user' }
-    //     const todoItem2 = { title: 'Test Title2', done: 'false', createdBy: 'test user' }
-    //     const todoItem3 = { title: 'Test Title3', done: 'false', createdBy: 'test user' }
-    //     const todo = await todoModel.insertTodo(todoItem)
-    //     const todo2 = await todoModel.insertTodo(todoItem2)
-    //     const todo3 = await todoModel.insertTodo(todoItem3)
-    //     await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
-    //     await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo2._id })
-    //     const insertTodoInList = await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo3._id })
+    it('should remove todolist and all of its todo', async () => {
+        //arrange
+        const arrangeData = await arrangeTodoList()
 
-    //      //act
-    //      const removedTodoList = await todoListModel.removeTodoListAndAllTodo(insertTodoInList.affectedDocuments._id)
+         //act
+         const removedTodoList = await todoListModel.removeTodoListAndAllTodo(arrangeData.affectedDocuments._id)
 
-    //      //assert
-    //      console.log()
-    // })
+         //assert
+         console.log(removedTodoList)
+    })
 })
 
 async function arrangeTodoList() {

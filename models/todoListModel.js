@@ -44,17 +44,18 @@ function insertTodoInList(item) {
 
 function getTodoListAndAllTodo(todoListId) {
     return new Promise((resolve, reject) => {
-        todoListCollection.findOne({_id: todoListId}, async (err, doc) => {
+        todoListCollection.findOne({_id: todoListId}, (err, doc) => {
             if (err) {
                 console.log(err)
             }
             let todos = []
             for (const todoId of doc.todoArray) {
-                const temp = await todoModel.findOneTodo(todoId)
-                todos.push(temp)
+                todos.push(todoModel.findOneTodo(todoId))
             }
-            doc.todoArray = todos
-            resolve(doc)
+            Promise.all(todos).then(res => {
+                doc.todoArray = res
+                resolve(doc)
+            })
         })
     })
 }

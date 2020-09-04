@@ -53,6 +53,7 @@ describe('CRUD on todolist', () => {
         const todoListAndAllTodo = await todoListModel.getTodoListAndAllTodo(insertTodoInList.affectedDocuments._id)
 
         //assert
+        // console.log(todoListAndAllTodo)
         expect(todoListAndAllTodo.todoArray[0]).to.include(todoItem)
         expect(todoListAndAllTodo.todoArray[1]).to.include(todoItem2)
         expect(todoListAndAllTodo.todoArray[2]).to.include(todoItem3)

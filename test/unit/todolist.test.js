@@ -1,9 +1,9 @@
 const chai = require('chai')
 const { expect } = chai
 
-const todoListModel = require('.././models/todoListModel')
-const todoModel = require('.././models/todoModel')
-const userModel = require('../models/userModel')
+const todoListModel = require('../../models/todoListModel')
+const todoModel = require('../../models/todoModel')
+const userModel = require('../../models/userModel')
 
 describe('CRUD on todolist', () => {
     beforeEach(async () => {

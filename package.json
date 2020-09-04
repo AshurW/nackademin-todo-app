@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "SET ENV=TEST&& mocha",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "unitTest": "SET ENV=TEST&& mocha ./test/unit/",
+    "integrationTest": "SET ENV=TEST&& mocha ./test/integration/"
   },
   "repository": {
     "type": "git",

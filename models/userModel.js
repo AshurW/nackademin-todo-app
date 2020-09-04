@@ -5,7 +5,7 @@ var userCollection
 
 if (process.env.ENV === 'TEST') {
     var userCollection = new dataStore({
-        filename: '../database/test/user.db',
+        filename: __dirname + '/../database/test/user.db',
         autoload: true,
         timestampData: true
     });

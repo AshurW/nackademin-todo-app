@@ -1,5 +1,8 @@
 require('dotenv').config()
 const dataStore = require('nedb')
+
+const todoModel = require('./todoModel')
+
 var todoListCollection
 
 if (process.env.ENV === 'TEST') {
@@ -28,7 +31,7 @@ function createList(todoList) {
     })
 }
 
-async function insertTodoInList(item) {
+function insertTodoInList(item) {
     return new Promise((resolve, reject) => {
         todoListCollection.update({ _id: item.todoListId }, { $push: { todoArray: item.todoId } }, { returnUpdatedDocs: true }, (err, todoUpdated, affectedDocuments) => {
             if (err) {
@@ -39,5 +42,22 @@ async function insertTodoInList(item) {
     })
 }
 
+function getTodoListAndAllTodo(todoListId) {
+    return new Promise((resolve, reject) => {
+        todoListCollection.findOne({_id: todoListId}, async (err, doc) => {
+            if (err) {
+                console.log(err)
+            }
+            let todos = []
+            for (const todoId of doc.todoArray) {
+                const temp = await todoModel.findOneTodo(todoId)
+                todos.push(temp)
+            }
+            doc.todoArray = todos
+            resolve(doc)
+        })
+    })
+}
 
-module.exports = { todoListCollection, createList, insertTodoInList }
+
+module.exports = { todoListCollection, createList, insertTodoInList, getTodoListAndAllTodo }

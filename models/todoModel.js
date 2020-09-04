@@ -30,11 +30,11 @@ function findAllTodos() {
 
 function findOneTodo(id) {
     return new Promise((resolve, reject) => {
-        todoCollection.findOne({ _id: id }, (err, docs) => {
+        todoCollection.findOne({ _id: id }, (err, doc) => {
             if (err) {
                 console.log(err)
             }
-            resolve(docs)
+            resolve(doc)
         })
     })
 }

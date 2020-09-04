@@ -5,13 +5,13 @@ var todoCollection
 
 if (process.env.ENV === 'TEST') {
     var todoCollection = new dataStore({
-        filename: __dirname + '../database/test/todoList.db',
+        filename: '../database/test/todo.db',
         autoload: true,
         timestampData: true
     });
 } else {
     var todoCollection = new dataStore({
-        filename: __dirname + '../database/todoList.db',
+        filename: __dirname + '../database/todo.db',
         autoload: true,
         timestampData: true
     });

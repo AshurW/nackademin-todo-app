@@ -5,13 +5,13 @@ var userCollection
 
 if (process.env.ENV === 'TEST') {
     var userCollection = new dataStore({
-        filename: __dirname + '../database/test/todoList.db',
+        filename: '../database/test/user.db',
         autoload: true,
         timestampData: true
     });
 } else {
     var userCollection = new dataStore({
-        filename: __dirname + '../database/todoList.db',
+        filename: __dirname + '../database/user.db',
         autoload: true,
         timestampData: true
     });

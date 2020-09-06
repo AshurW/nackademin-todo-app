@@ -11,4 +11,4 @@ app.use(express.static('./public'))
 app.use('/', todoRouter)
 app.use('/user', userRouter)
 
-app.listen(8080, () => console.log('Connected to Server'))
+module.exports = app

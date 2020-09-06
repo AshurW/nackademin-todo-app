@@ -1,6 +1,9 @@
 require('dotenv').config()
-const dataStore = require('nedb')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const jwtSecret = 'this is a secret'
 
+const dataStore = require('nedb')
 var userCollection
 
 if (process.env.ENV === 'TEST') {
@@ -19,22 +22,35 @@ if (process.env.ENV === 'TEST') {
 
 function insertUser(user) {
     return new Promise((resolve, reject) => {
-        userCollection.insert(user, (err, newDoc) => {
-            if (err) {
-                console.log(err)
-            }
-            resolve(newDoc)
+        bcrypt.hash(user.password, 10, async (err, hashedPassword) => {
+            const newUser = {username: user.username, password: hashedPassword, role: user.role}
+            userCollection.insert(newUser, (err, newDoc) => {
+                if (err) {
+                    console.log(err)
+                }
+                resolve(newDoc)
+            })
         })
     })
 }
 
-function loginUser(username) {
+function loginUser(user) {
     return new Promise((resolve, reject) => {
-        userCollection.find({username}, (err, docs) => {
+        userCollection.findOne({username: user.username}, (err, doc) => {
             if (err) {
                 console.log(err)
             }
-            resolve(docs)
+            bcrypt.compare(user.password, doc.password, (err, result) => {
+                if(!result) {
+                    resolve('wrong user information')
+                } else {
+                    const token = jwt.sign(doc, jwtSecret, {expiresIn: '1h'})
+                    resolve({
+                        message: 'login success',
+                        token
+                    })
+                }
+            })
         })
     })
 }

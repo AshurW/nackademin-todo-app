@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon start.js",
-    "unitTest": "SET ENV=TEST&& mocha ./test/unit/",
-    "integrationTest": "SET ENV=TEST&& mocha ./test/integration/"
+    "uTest": "SET ENV=TEST&& mocha ./test/unit/",
+    "iTest": "SET ENV=TEST&& mocha ./test/integration/"
   },
   "repository": {
     "type": "git",

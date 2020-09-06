@@ -11,7 +11,7 @@ if (process.env.ENV === 'TEST') {
     });
 } else {
     var userCollection = new dataStore({
-        filename: __dirname + '../database/user.db',
+        filename: __dirname + '/../database/user.db',
         autoload: true,
         timestampData: true
     });

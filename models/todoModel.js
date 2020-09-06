@@ -11,7 +11,7 @@ if (process.env.ENV === 'TEST') {
     });
 } else {
     var todoCollection = new dataStore({
-        filename: __dirname + '../database/todo.db',
+        filename: __dirname + '/../database/todo.db',
         autoload: true,
         timestampData: true
     });

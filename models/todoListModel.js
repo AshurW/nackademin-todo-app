@@ -13,7 +13,7 @@ if (process.env.ENV === 'TEST') {
     });
 } else {
     var todoListCollection = new dataStore({
-        filename: __dirname + '../database/todoList.db',
+        filename: __dirname + '/../database/todoList.db',
         autoload: true,
         timestampData: true
     });

@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon start.js",
     "unitTest": "SET ENV=TEST&& mocha ./test/unit/",
     "integrationTest": "SET ENV=TEST&& mocha ./test/integration/"
   },

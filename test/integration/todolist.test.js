@@ -7,8 +7,6 @@ const app = require('../../app')
 const todoListModel = require('../../models/todoListModel')
 const todoModel = require('../../models/todoModel')
 const userModel = require('../../models/userModel')
-const { set } = require('../../app')
-const { createTodoList } = require('../../controllers/todoListController')
 
 
 describe('Full on crud integreration test', function () {

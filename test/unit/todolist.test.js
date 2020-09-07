@@ -5,7 +5,7 @@ const todoListModel = require('../../models/todoListModel')
 const todoModel = require('../../models/todoModel')
 const userModel = require('../../models/userModel')
 
-describe('CRUD on todolist', () => {
+describe('CRUD on todolist model', () => {
     beforeEach(async () => {
         await todoListModel.todoListCollection.remove({}, { multi: true });
         await todoModel.todoCollection.remove({}, { multi: true });
@@ -27,9 +27,9 @@ describe('CRUD on todolist', () => {
         const todoList = { todoListName: 'Testing List', todoArray: [], createdBy: 'test user' }
         const createdTodoList = await todoListModel.createList(todoList)
         const todoItem = { title: 'Test Title', done: 'false', createdBy: 'test user' }
+        const todo = await todoModel.insertTodo(todoItem)
 
         //act
-        const todo = await todoModel.insertTodo(todoItem)
         const insertTodoInList = await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
 
         //assert
@@ -53,7 +53,7 @@ describe('CRUD on todolist', () => {
         const arrangeData = await arrangeTodoList()
 
         //act
-        const todoListAndAllTodo = await todoListModel.getTodoListAndAllTodo(arrangeData.affectedDocuments._id)
+        const todoListAndAllTodo = await todoListModel.getTodoListAndAllTodos(arrangeData.affectedDocuments._id)
 
         //assert
         expect(todoListAndAllTodo.todoArray[0]).to.include({ title: 'Test Title1', done: 'false', createdBy: 'test user' })
@@ -68,7 +68,7 @@ describe('CRUD on todolist', () => {
          const removedTodoList = await todoListModel.removeTodoListAndAllTodo(arrangeData.affectedDocuments._id)
 
          //assert
-         console.log(removedTodoList)
+         expect(removedTodoList.numRemoved).to.be.equal(1)
     })
 })
 

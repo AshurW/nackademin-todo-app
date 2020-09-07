@@ -53,7 +53,7 @@ function getTodoList(todoListId) {
     })
 }
 
-function getTodoListAndAllTodo(todoListId) {
+function getTodoListAndAllTodos(todoListId) {
     return new Promise((resolve, reject) => {
         todoListCollection.findOne({_id: todoListId}, (err, doc) => {
             if (err) {
@@ -87,10 +87,10 @@ function removeTodoListAndAllTodo(todoListId) {
             if (err) {
                 err
             }
-            resolve({message: 'Removed all todos and the list'})
+            resolve({message: 'Removed all todos and the list', numRemoved})
         })
     })
 }
 
 
-module.exports = { todoListCollection, createList, insertTodoInList, getTodoList, getTodoListAndAllTodo, removeTodoListAndAllTodo }
+module.exports = { todoListCollection, createList, insertTodoInList, getTodoList, getTodoListAndAllTodos, removeTodoListAndAllTodo }

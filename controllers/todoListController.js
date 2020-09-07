@@ -1,8 +1,18 @@
 const todoListModel = require('../models/todoListModel')
 
-async function createTodoList(req, res) {
-    const todoList = { todoListName: req.body.todoListName, todoArray: [], createdBy: req.user._id }
-    res.json(await todoListModel.createList(todoList))
+async function getTodoList(req, res) {
+    const todoListId = req.body.todoListId
+    res.status(200).json(await todoListModel.getTodoList(todoListId))
 }
 
-module.exports = { createTodoList }
+async function getTodoListAndAllTodos(req, res) {
+    const todoListId = req.body.todoListId
+    res.status(200).json(await todoListModel.getTodoListAndAllTodos(todoListId))
+}
+
+async function createTodoList(req, res) {
+    const todoList = { todoListName: req.body.todoListName, todoArray: [], createdBy: req.user._id }
+    res.status(201).json(await todoListModel.createList(todoList))
+}
+
+module.exports = { getTodoList, getTodoListAndAllTodos, createTodoList }

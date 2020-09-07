@@ -8,6 +8,7 @@ const todoListModel = require('../../models/todoListModel')
 const todoModel = require('../../models/todoModel')
 const userModel = require('../../models/userModel')
 const { set } = require('../../app')
+const { createTodoList } = require('../../controllers/todoListController')
 
 
 describe('Full on crud integreration test', function () {
@@ -41,10 +42,63 @@ describe('Full on crud integreration test', function () {
             .send(todoListData)
             .end(function (err, res) {
                 expect(res).to.be.json
+                expect(res).to.have.status(201)
                 expect(res.body).to.include({
                     todoListName: todoListData.todoListName,
                     createdBy: userId
                 })
             })
+    })
+    it('should get the todoList', async function () {
+        const userId = this.test.user._id
+        const todoList = { todoListName: 'ITesting List', todoArray: [], createdBy: userId }
+        const createdTodoList = await todoListModel.createList(todoList)
+
+        const todoListData = { todoListId: createdTodoList._id }
+
+        request(app)
+            .get('/getTodoList')
+            .set('Content-Type', `application/json`)
+            .send(todoListData)
+            .end(function (err, res) {
+                if (err) {
+                    console.log(err)
+                }
+                expect(res).to.be.json
+                expect(res).to.have.status(200)
+                // expect(res.body).to.include({
+                //     todoListName: createTodoList.todoListName,
+                //     createdBy: userId
+                // })
+            })
+    })
+    it('should get the todoList and all of its todo', async function () {
+        const userId = this.test.user._id
+        const todoList = { todoListName: 'ITesting List', todoArray: [], createdBy: userId }
+        const createdTodoList = await todoListModel.createList(todoList)
+        const todoItem = { title: 'Test Title1', done: 'false', createdBy: userId }
+        const todo = await todoModel.insertTodo(todoItem)
+        const insertedTodoList = await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
+
+        const todoListData = { todoListId: createdTodoList._id }
+
+        request(app)
+            .get('/getTodoListAndAllTodos')
+            .set('Content-Type', `application/json`)
+            .send(todoListData)
+            .end(function (err, res) {
+                if (err) {
+                    console.log(err)
+                }
+                expect(res).to.be.json
+                expect(res).to.have.status(200)
+                // console.log(res.body.todoArray.length)
+                expect(res.body).to.include({
+                    todoListName: todoList.todoListName,
+                    createdBy: userId
+                })
+                expect(res.body.todoArray.length).to.be.equal(1)
+            })
+
     })
 })

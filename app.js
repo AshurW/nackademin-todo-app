@@ -5,7 +5,7 @@ const todoListRouter = require('./router/todoListRouter')
 const todoRouter = require('./router/todoRouter')
 const userRouter = require('./router/userRouter')
 
-app.use(express.urlencoded({ exteded: true }))
+// app.use(express.urlencoded({ exteded: true })) alex sa det här
 app.use(express.json())
 app.use(express.static('./public'))
 

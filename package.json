@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon start.js",
+    "test": "SET ENV=TEST&& mocha --recursive",
     "uTest": "SET ENV=TEST&& mocha ./test/unit/",
     "iTest": "SET ENV=TEST&& mocha ./test/integration/"
   },

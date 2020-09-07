@@ -56,7 +56,6 @@ describe('CRUD on todolist', () => {
         const todoListAndAllTodo = await todoListModel.getTodoListAndAllTodo(arrangeData.affectedDocuments._id)
 
         //assert
-        // console.log(todoListAndAllTodo)
         expect(todoListAndAllTodo.todoArray[0]).to.include({ title: 'Test Title1', done: 'false', createdBy: 'test user' })
         expect(todoListAndAllTodo.todoArray[1]).to.include({ title: 'Test Title2', done: 'false', createdBy: 'test user' })
         expect(todoListAndAllTodo.todoArray[2]).to.include({ title: 'Test Title3', done: 'false', createdBy: 'test user' })

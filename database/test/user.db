@@ -1,3 +1,4 @@
-{"username":"ashur","password":"$2a$10$ycOExHfSQV5GGBguzabWjeN16YeYrOIxyB6MAHpjvQMkJBpgABhby","role":"admin","_id":"udtHDOWTSkA5lsPU","createdAt":{"$$date":1599398169768},"updatedAt":{"$$date":1599398169768}}
-{"$$deleted":true,"_id":"udtHDOWTSkA5lsPU"}
 {"username":"ashur","password":"$2a$10$jsBRrIzn/z/2OmWxfSa9oOnSZAxjwal.D1oboFK/.YpVzGVFexLBK","role":"admin","_id":"2FalJBd0jJqPb37C","createdAt":{"$$date":1599398211723},"updatedAt":{"$$date":1599398211723}}
+{"$$deleted":true,"_id":"2FalJBd0jJqPb37C"}
+{"username":"ashur","password":"$2a$10$0JcBYmGJh3UpNwMG2M4fKOh5WqvHx1oHRxpt2z7MLPLh.vSdCFkHW","role":"admin","_id":"PKXRh76zkNnuoWAt","createdAt":{"$$date":1599462598746},"updatedAt":{"$$date":1599462598746}}
+{"$$deleted":true,"_id":"PKXRh76zkNnuoWAt"}

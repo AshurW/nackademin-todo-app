@@ -114,5 +114,16 @@ function removeTodoListAndAllTodo(todoListId) {
     })
 }
 
+function removeAllCreatedBy(userId) {
+    return new Promise((resolve, reject) => {
+        todoListCollection.remove({createdBy: userId}, {multi: true}, (err, numRemoved) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(numRemoved)
+        })
+    })
+}
 
-module.exports = { todoListCollection, createList, insertTodoInList, getAllTodoLists, getTodoList, getTodoListAndAllTodos, getAllTodoListCreatedBy, removeTodoListAndAllTodo }
+
+module.exports = { todoListCollection, createList, insertTodoInList, getAllTodoLists, getTodoList, getTodoListAndAllTodos, getAllTodoListCreatedBy, removeTodoListAndAllTodo, removeAllCreatedBy }

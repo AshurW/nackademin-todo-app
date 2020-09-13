@@ -94,5 +94,16 @@ function updateTodoTitle(id, title, user) {
     })
 }
 
+function removeAllCreatedBy(userId) {
+    return new Promise((resolve, reject) => {
+        todoCollection.remove({createdBy: userId}, {multi: true}, (err, numRemoved) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(numRemoved)
+        })
+    })
+}
 
-module.exports = { todoCollection, findAllTodos, findOneTodo, findAllCreatedBy, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }
+
+module.exports = { todoCollection, findAllTodos, findOneTodo, findAllCreatedBy, insertTodo, removeTodo, updateTodoDone, updateTodoTitle, removeAllCreatedBy }

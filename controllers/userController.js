@@ -1,3 +1,5 @@
+const todoListModel = require('../models/todoListModel')
+const todoModel = require('../models/todoModel')
 const userModel = require('../models/userModel')
 
 async function createUser(req, res) {
@@ -6,8 +8,14 @@ async function createUser(req, res) {
 }
 
 async function loginUser(req, res) {
-    const user = { username: req.body.username, password: req.body.password }
-    res.json(await userModel.loginUser(user))
+    try {
+        const user = { username: req.body.username, password: req.body.password }
+        res.json(await userModel.loginUser(user))
+    } catch (error) {
+        console.log(error)
+        res.send('user doesnt exist')
+    }
+
 }
 
 async function allUserInfo(req, res) {
@@ -15,4 +23,11 @@ async function allUserInfo(req, res) {
     res.json(await userModel.getAllUserInfo(userInfo))
 }
 
-module.exports = { createUser, loginUser, allUserInfo }
+async function userDeletion(req, res) {
+    await todoListModel.removeAllCreatedBy(req.user._id)
+    await todoModel.removeAllCreatedBy(req.user._id)
+    await userModel.removeUser(req.user._id)
+    res.send({ message: 'everything has been delete about this user' })
+}
+
+module.exports = { createUser, loginUser, allUserInfo, userDeletion }

@@ -43,17 +43,21 @@ function loginUser(user) {
             if (err) {
                 console.log(err)
             }
-            bcrypt.compare(user.password, doc.password, (err, result) => {
-                if (!result) {
-                    resolve('wrong user information')
-                } else {
-                    const token = jwt.sign(doc, jwtSecret, { expiresIn: '1h' })
-                    resolve({
-                        message: 'login success',
-                        token
-                    })
-                }
-            })
+            if (doc) {
+                bcrypt.compare(user.password, doc.password, (err, result) => {
+                    if (!result) {
+                        resolve('wrong user information')
+                    } else {
+                        const token = jwt.sign(doc, jwtSecret, { expiresIn: '1h' })
+                        resolve({
+                            message: 'login success',
+                            token
+                        })
+                    }
+                })
+            } else {
+                reject('user doesnt exist')
+            }
         })
     })
 }
@@ -70,4 +74,8 @@ async function getAllUserInfo(userInfo) {
     return allInfo
 }
 
-module.exports = { userCollection, insertUser, loginUser, getAllUserInfo }
+async function removeUser(userId) {
+    await userCollection.remove({_id: userId})
+}
+
+module.exports = { userCollection, insertUser, loginUser, getAllUserInfo, removeUser }

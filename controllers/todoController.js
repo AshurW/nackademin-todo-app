@@ -5,7 +5,7 @@ async function getAllTodos(req, res) {
 }
 
 async function addTodo(req, res) {
-    const todo = { title: req.body.todoTitle, done: req.body.todoDone, createdBy: req.user._id }
+    const todo = { title: req.body.todoTitle, done: req.body.todoDone, createdBy: req.user._id, todoListId: req.body.todoListId}
     res.send(await todoModel.insertTodo(todo))
 }
 

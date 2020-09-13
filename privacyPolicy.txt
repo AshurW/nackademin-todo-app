@@ -1,0 +1,21 @@
+
+Privacy policy
+
+* What data is being saved
+    - Personal identification information (Username, uID, Email address & password).
+    - Necessary encryption is made for password storage to ensure user privacy and security.
+    - We also keep information about your todolist and todos (Title, Done status & Username ).
+
+* Why the data is saved
+    - The data is being saved to let the user create and sign into a account with a certain role
+    and auto generated id to be able to create todo lists and todo items to previously mentioned todo lists.
+    This is to make the web application works as intended.
+
+* How the data is used
+    - The data is used to protect your information from being accessed by anyone else but you.
+    - The data is used to be able to link users todolists and todoitems to previously said users
+    - You are identified by the uniqe id that has been genereted
+
+* How to remove the data
+    - To remove your data you will need to delete your account, 
+      by doing that you will delete all data about you, unless the data is deemed by law to be saved

@@ -1,4 +1,5 @@
 const todoModel = require('../models/todoModel')
+const todoListModel = require('../models/todoListModel')
 
 async function getAllTodos(req, res) {
     res.send(await todoModel.findAllTodos())
@@ -6,7 +7,9 @@ async function getAllTodos(req, res) {
 
 async function addTodo(req, res) {
     const todo = { title: req.body.todoTitle, done: req.body.todoDone, createdBy: req.user._id, todoListId: req.body.todoListId}
-    res.send(await todoModel.insertTodo(todo))
+    const createdTodo = await todoModel.insertTodo(todo)
+    await todoListModel.insertTodoInList({todoListId: req.body.todoListId, todoId: createdTodo._id})
+    res.send(createdTodo)
 }
 
 async function deleteTodo(req, res) {

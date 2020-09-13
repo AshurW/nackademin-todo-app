@@ -10,4 +10,9 @@ async function loginUser(req, res) {
     res.json(await userModel.loginUser(user))
 }
 
-module.exports = { createUser, loginUser }
+async function allUserInfo(req, res) {
+    const userInfo = { id: req.user._id, username: req.user.username }
+    res.json(await userModel.getAllUserInfo(userInfo))
+}
+
+module.exports = { createUser, loginUser, allUserInfo }

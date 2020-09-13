@@ -4,6 +4,7 @@ const todoListRouter = express.Router()
 const todoListController = require('../controllers/todoListController')
 const authMiddle = require('../middleware/authMiddle')
 
+todoListRouter.get('/getAllTodoList', todoListController.getAllTodoLists)
 todoListRouter.get('/getTodoList', todoListController.getTodoList)
 todoListRouter.get('/getTodoListAndAllTodos', todoListController.getTodoListAndAllTodos)
 todoListRouter.post('/createTodoList', authMiddle.isAuthenticated, todoListController.createTodoList)

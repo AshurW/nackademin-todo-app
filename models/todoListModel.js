@@ -37,14 +37,25 @@ function insertTodoInList(item) {
             if (err) {
                 console.log(err)
             }
-            resolve({message: 'todo is added to todoList array', affectedDocuments})
+            resolve({ message: 'todo is added to todoList array', affectedDocuments })
+        })
+    })
+}
+
+function getAllTodoLists() {
+    return new Promise((resolve, reject) => {
+        todoListCollection.find({}, (err, docs) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(docs)
         })
     })
 }
 
 function getTodoList(todoListId) {
     return new Promise((resolve, reject) => {
-        todoListCollection.findOne({_id: todoListId}, (err, doc) => {
+        todoListCollection.findOne({ _id: todoListId }, (err, doc) => {
             if (err) {
                 console.log(err)
             }
@@ -55,7 +66,7 @@ function getTodoList(todoListId) {
 
 function getTodoListAndAllTodos(todoListId) {
     return new Promise((resolve, reject) => {
-        todoListCollection.findOne({_id: todoListId}, (err, doc) => {
+        todoListCollection.findOne({ _id: todoListId }, (err, doc) => {
             if (err) {
                 console.log(err)
             }
@@ -71,9 +82,20 @@ function getTodoListAndAllTodos(todoListId) {
     })
 }
 
+function getAllTodoListCreatedBy(userId) {
+    return new Promise((resolve, reject) => {
+        todoListCollection.find({ createdBy: userId }, (err, docs) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(docs)
+        })
+    })
+}
+
 function removeTodoListAndAllTodo(todoListId) {
     return new Promise((resolve, reject) => {
-        todoListCollection.findOne({_id: todoListId}, (err, doc) => {
+        todoListCollection.findOne({ _id: todoListId }, (err, doc) => {
             if (err) {
                 console.log(err)
             }
@@ -83,14 +105,14 @@ function removeTodoListAndAllTodo(todoListId) {
             }
             Promise.all(todos)
         })
-        todoListCollection.remove({_id: todoListId}, (err, numRemoved) => {
+        todoListCollection.remove({ _id: todoListId }, (err, numRemoved) => {
             if (err) {
                 err
             }
-            resolve({message: 'Removed all todos and the list', numRemoved})
+            resolve({ message: 'Removed all todos and the list', numRemoved })
         })
     })
 }
 
 
-module.exports = { todoListCollection, createList, insertTodoInList, getTodoList, getTodoListAndAllTodos, removeTodoListAndAllTodo }
+module.exports = { todoListCollection, createList, insertTodoInList, getAllTodoLists, getTodoList, getTodoListAndAllTodos, getAllTodoListCreatedBy, removeTodoListAndAllTodo }

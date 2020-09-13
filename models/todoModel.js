@@ -39,6 +39,17 @@ function findOneTodo(id) {
     })
 }
 
+function findAllCreatedBy(userId) {
+    return new Promise((resolve, reject) => {
+        todoCollection.find({createdBy: userId}, (err, docs) => {
+            if (err) {
+                console.log(err)
+            }
+            resolve(docs)
+        })
+    })
+}
+
 function insertTodo(todo) {
     return new Promise((resolve, reject) => {
         todoCollection.insert(todo, (err, newDoc) => {
@@ -84,4 +95,4 @@ function updateTodoTitle(id, title, user) {
 }
 
 
-module.exports = { todoCollection, findAllTodos, findOneTodo, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }
+module.exports = { todoCollection, findAllTodos, findOneTodo, findAllCreatedBy, insertTodo, removeTodo, updateTodoDone, updateTodoTitle }

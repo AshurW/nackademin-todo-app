@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon start.js",
-    "test": "cross-env ENV=TEST && mocha --recursive",
+    "test": "cross-env ENV=TEST && mocha --recursive --exit",
     "uTest": "cross-env ENV=TEST && mocha ./test/unit/",
     "iTest": "cross-env ENV=TEST && mocha ./test/integration/"
   },

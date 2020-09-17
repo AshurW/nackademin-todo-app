@@ -84,6 +84,11 @@ function loginUser(user) {
     //         }
     //     })
     // })
+    try {
+        
+    } catch (error) {
+        
+    }
 }
 
 // async function getAllUserInfo(userInfo) {

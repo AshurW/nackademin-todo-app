@@ -11,11 +11,11 @@ var userCollection
 
 if (process.env.ENV === 'TEST') {
     var userCollection = new dataStore({
-        filename: __dirname + '/../database/test/user.db',
+        filename: __dirname + '/../database/test/userT.db',
         autoload: true,
         timestampData: true
     });
-} else {
+} else if (process.env.ENV === 'DEV') {
     var userCollection = new dataStore({
         filename: __dirname + '/../database/user.db',
         autoload: true,

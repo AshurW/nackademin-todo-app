@@ -7,11 +7,11 @@ var todoListCollection
 
 if (process.env.ENV === 'TEST') {
     var todoListCollection = new dataStore({
-        filename: __dirname + '/../database/test/todoList.db',
+        filename: __dirname + '/../database/test/todoListT.db',
         autoload: true,
         timestampData: true
     });
-} else {
+} else if (process.env.ENV === 'DEV') {
     var todoListCollection = new dataStore({
         filename: __dirname + '/../database/todoList.db',
         autoload: true,

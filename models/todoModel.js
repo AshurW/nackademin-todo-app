@@ -101,8 +101,8 @@ async function removeTodo(id) {
     //     })
     // })
     try {
-        const result = await Todo.deleteOne({ _id: id })
-        return { message: 'Removed the todo', result }
+        await Todo.findByIdAndDelete(id)
+        return { message: 'Removed the todo' }
     } catch (error) {
         return { message: 'something is wrong' }
     }
@@ -152,7 +152,7 @@ async function removeAllCreatedBy(userId) {
     //     })
     // })
     try {
-        const result = await Todo.deleteMany({createdBy: userId})
+        const result = await Todo.deletfindByIdAndDeleteeMany(userId)
         return { message: 'remove all todos createdBy', result }
     } catch (error) {
         return { message: 'something is wrong' }
@@ -160,4 +160,4 @@ async function removeAllCreatedBy(userId) {
 }
 
 
-module.exports = { findAllTodos, findOneTodo, findAllCreatedBy, insertTodo, removeTodo, updateTodoDone, updateTodoTitle, removeAllCreatedBy }
+module.exports = { Todo , findAllTodos, findOneTodo, findAllCreatedBy, insertTodo, removeTodo, updateTodoDone, updateTodoTitle, removeAllCreatedBy }

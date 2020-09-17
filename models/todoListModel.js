@@ -56,7 +56,7 @@ async function insertTodoInList(item) {
     //     })
     // })
     try {
-        const result = await TodoList.updateOne({_id: item.todoListId}, {$push: {todoArray: item.todoId}})
+        const result = await TodoList.findByIdAndUpdate(item.todoListId, {$push: {todoArray: item.todoId}}, {new: true})
         return result
     } catch (error) {
         return { message: 'something is wrong' }
@@ -161,11 +161,11 @@ async function removeTodoListAndAllTodo(todoListId) {
     //     })
     // })
     try {
-        const todoList = await TodoList.find(todoListId)
+        const todoList = await TodoList.findById(todoListId)
         for (const todo of todoList.todoArray) {
-            await todoModel.removeTodo(todo)
+            const res = await todoModel.removeTodo(todo)
         }
-        const result = await TodoList.deleteOne(todoListId)
+        const result = await TodoList.findByIdAndDelete(todoListId)
         return { message: 'Removed all todos and the list', result }
     } catch (error) {
         return { message: 'something is wrong' }
@@ -190,5 +190,4 @@ async function removeAllCreatedBy(userId) {
 }
 
 
-// module.exports = { todoListCollection, createList, insertTodoInList, getAllTodoLists, getTodoList, getTodoListAndAllTodos, getAllTodoListCreatedBy, removeTodoListAndAllTodo, removeAllCreatedBy }
-module.exports = { createList, insertTodoInList, getAllTodoLists, getTodoList, getAllTodoListCreatedBy }
+module.exports = { TodoList, createList, insertTodoInList, getAllTodoLists, getTodoList, getTodoListAndAllTodos, getAllTodoListCreatedBy, removeTodoListAndAllTodo, removeAllCreatedBy }

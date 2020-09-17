@@ -1,15 +1,22 @@
 const chai = require('chai')
 const { expect } = chai
+const db = require('./../../database/dbSetup')
 
 const todoListModel = require('../../models/todoListModel')
 const todoModel = require('../../models/todoModel')
 const userModel = require('../../models/userModel')
 
 describe('CRUD on todolist model', () => {
+    before(async () => {
+        await db.connect()
+    })
+    after(async () => {
+        await db.disconnect()
+    })
     beforeEach(async () => {
-        await todoListModel.todoListCollection.remove({}, { multi: true });
-        await todoModel.todoCollection.remove({}, { multi: true });
-        await userModel.userCollection.remove({}, { multi: true });
+        await todoListModel.TodoList.deleteMany({});
+        await todoModel.Todo.deleteMany({});
+        await userModel.User.deleteMany({});
     })
     it('should create a todolist', async () => {
         //arrange
@@ -33,14 +40,16 @@ describe('CRUD on todolist model', () => {
         const insertTodoInList = await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
 
         //assert
-        expect(insertTodoInList.affectedDocuments.todoArray).to.include(todo._id)
+        console.log(insertTodoInList)
+        console.log(todo)
+        expect(insertTodoInList.todoArray).to.include(todo._id)
     })
     it('should get todoList', async () => {
         //arrange
         const arrangeData = await arrangeTodoList()
 
         //act
-        const getTodoList = await todoListModel.getTodoList(arrangeData.affectedDocuments._id)
+        const getTodoList = await todoListModel.getTodoList(arrangeData._id)
 
         //assert
         expect(getTodoList.todoListName).to.be.equal('Testing List')
@@ -53,22 +62,23 @@ describe('CRUD on todolist model', () => {
         const arrangeData = await arrangeTodoList()
 
         //act
-        const todoListAndAllTodo = await todoListModel.getTodoListAndAllTodos(arrangeData.affectedDocuments._id)
+        const todoListAndAllTodo = await todoListModel.getTodoListAndAllTodos(arrangeData._id)
 
         //assert
-        expect(todoListAndAllTodo.todoArray[0]).to.include({ title: 'Test Title1', done: 'false', createdBy: 'test user' })
-        expect(todoListAndAllTodo.todoArray[1]).to.include({ title: 'Test Title2', done: 'false', createdBy: 'test user' })
-        expect(todoListAndAllTodo.todoArray[2]).to.include({ title: 'Test Title3', done: 'false', createdBy: 'test user' })
+        expect(todoListAndAllTodo.todoArray[0]).to.include({ title: 'Test Title1', done: false, createdBy: 'test user' })
+        expect(todoListAndAllTodo.todoArray[1]).to.include({ title: 'Test Title2', done: false, createdBy: 'test user' })
+        expect(todoListAndAllTodo.todoArray[2]).to.include({ title: 'Test Title3', done: false, createdBy: 'test user' })
     })
     it('should remove todolist and all of its todo', async () => {
         //arrange
         const arrangeData = await arrangeTodoList()
 
          //act
-         const removedTodoList = await todoListModel.removeTodoListAndAllTodo(arrangeData.affectedDocuments._id)
+         const removedTodoList = await todoListModel.removeTodoListAndAllTodo(arrangeData._id)
 
          //assert
-         expect(removedTodoList.numRemoved).to.be.equal(1)
+         console.log(removedTodoList)
+         expect(removedTodoList.message).to.be.equal('Removed all todos and the list')
     })
 })
 

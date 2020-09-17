@@ -1,13 +1,9 @@
-const mongoose = require('mongoose')
 const app = require('./app')
-
+const db = require('./database/dbSetup')
 const PORT = process.env.PORT || 8080
 
-if(process.env.ENV === 'STAGE') {
-    mongoose.connect(process.env.DB_CONNECTION, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }, () => console.log('connected to DB'))
-}
+db.connect()
+    .then(() => {
+        app.listen(PORT, () => console.log('Connected to Server'))
+    })
 
-app.listen(PORT, () => console.log('Connected to Server'))

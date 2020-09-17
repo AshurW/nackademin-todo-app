@@ -3,6 +3,7 @@ const chaiHttp = require('chai-http')
 chai.use(chaiHttp)
 const { expect, request } = chai
 const app = require('../../app')
+const db = require('./../../database/dbSetup')
 
 const todoListModel = require('../../models/todoListModel')
 const todoModel = require('../../models/todoModel')
@@ -10,11 +11,16 @@ const userModel = require('../../models/userModel')
 
 
 describe('Full on crud integreration test', function () {
+    before(async () => {
+        await db.connect()
+    })
+    after(async () => {
+        await db.disconnect()
+    })
     beforeEach(async function () {
-        await todoListModel.todoListCollection.remove({}, { multi: true });
-        await todoModel.todoCollection.remove({}, { multi: true });
-        await userModel.userCollection.remove({}, { multi: true });
-
+        await todoListModel.TodoList.deleteMany({});
+        await todoModel.Todo.deleteMany({});
+        await userModel.User.deleteMany({});
 
         const userFields = {
             username: 'ashur',
@@ -29,16 +35,16 @@ describe('Full on crud integreration test', function () {
         }
         this.currentTest.token = (await userModel.loginUser(userLogin)).token
     })
-    it('should login and create a todoList', function () {
+    it('should login and create a todoList', async function () {
         const todoListData = { todoListName: 'ITesting list' }
         const userId = this.test.user._id
 
-        request(app)
+        await request(app)
             .post('/createTodoList')
             .set('authorization', `Bearer ${this.test.token}`)
             .set('Content-Type', `application/json`)
             .send(todoListData)
-            .end(function (err, res) {
+            .then(function (res) {
                 expect(res).to.be.json
                 expect(res).to.have.status(201)
                 expect(res.body).to.include({
@@ -54,14 +60,11 @@ describe('Full on crud integreration test', function () {
 
         const todoListData = { todoListId: createdTodoList._id }
 
-        request(app)
+        await request(app)
             .get('/getTodoList')
             .set('Content-Type', `application/json`)
             .send(todoListData)
-            .end(function (err, res) {
-                if (err) {
-                    console.log(err)
-                }
+            .then(function (res) {
                 expect(res).to.be.json
                 expect(res).to.have.status(200)
                 // expect(res.body).to.include({
@@ -76,18 +79,15 @@ describe('Full on crud integreration test', function () {
         const createdTodoList = await todoListModel.createList(todoList)
         const todoItem = { title: 'Test Title1', done: 'false', createdBy: userId }
         const todo = await todoModel.insertTodo(todoItem)
-        const insertedTodoList = await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
+        await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
 
         const todoListData = { todoListId: createdTodoList._id }
 
-        request(app)
+        await request(app)
             .get('/getTodoListAndAllTodos')
             .set('Content-Type', `application/json`)
             .send(todoListData)
-            .end(function (err, res) {
-                if (err) {
-                    console.log(err)
-                }
+            .then(function (res) {
                 expect(res).to.be.json
                 expect(res).to.have.status(200)
                 // console.log(res.body.todoArray.length)

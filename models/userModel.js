@@ -122,4 +122,4 @@ async function removeUser(userId) {
     }
 }
 
-module.exports = { insertUser, loginUser, getAllUserInfo, removeUser }
+module.exports = { User, insertUser, loginUser, getAllUserInfo, removeUser }

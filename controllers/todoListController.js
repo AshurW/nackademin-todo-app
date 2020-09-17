@@ -15,6 +15,7 @@ async function getTodoListAndAllTodos(req, res) {
 }
 
 async function createTodoList(req, res) {
+    console.log(req.user)
     const todoList = { todoListName: req.body.todoListName, todoArray: [], createdBy: req.user._id }
     res.status(201).json(await todoListModel.createList(todoList))
 }

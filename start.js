@@ -3,7 +3,7 @@ const app = require('./app')
 
 const PORT = process.env.PORT || 8080
 
-if(process.env.ENV === 'STAG') {
+if(process.env.ENV === 'STAGE') {
     mongoose.connect(process.env.DB_CONNECTION, {
         useNewUrlParser: true,
         useUnifiedTopology: true

@@ -57,7 +57,7 @@ async function insertUser(user) {
             role: result.role
         }
     } catch (error) {
-        console.log(error)
+        return { message: 'something is wrong' }
     }
 }
 
@@ -85,37 +85,41 @@ async function loginUser(user) {
     //     })
     // })
     try {
-        const userData = await User.findOne({username: user.username})
+        const userData = await User.findOne({ username: user.username })
         console.log(userData)
         const validPassword = bcrypt.compareSync(user.password, userData.password)
-        if(!validPassword) { throw new Error('Wrong password') }
-        const dataToToken = {id: userData._id, username: userData.username, role: userData.role}
+        if (!validPassword) { throw new Error('Wrong password') }
+        const dataToToken = { _id: userData._id, username: userData.username, role: userData.role }
         const token = jwt.sign(dataToToken, jwtSecret, { expiresIn: '1h' })
         return {
             message: 'login success',
             token
         }
     } catch (error) {
-        // console.log(error)
-        return {message: 'something is wrong'}
+        return { message: 'something is wrong' }
     }
 }
 
-// async function getAllUserInfo(userInfo) {
-//     const allTodoList = await todoListModel.getAllTodoListCreatedBy(userInfo.id)
-//     const allTodos = await todoModel.findAllCreatedBy(userInfo.id)
+async function getAllUserInfo(userInfo) {
+    const allTodoList = await todoListModel.getAllTodoListCreatedBy(userInfo.id)
+    const allTodos = await todoModel.findAllCreatedBy(userInfo.id)
 
-//     const allInfo = {
-//         user: userInfo.username,
-//         allTodoList,
-//         allTodos
-//     }
-//     return allInfo
-// }
+    const allInfo = {
+        user: userInfo.username,
+        allTodoList,
+        allTodos
+    }
+    return allInfo
+}
 
-// async function removeUser(userId) {
-//     await userCollection.remove({_id: userId})
-// }
+async function removeUser(userId) {
+    // await userCollection.remove({ _id: userId })
+    try {
+        const result = await User.deleteOne({_id: userId})
+        return { message: 'User is removed', result }
+    } catch (error) {
+         return { message: 'something is wrong' }
+    }
+}
 
-// module.exports = { userCollection, insertUser, loginUser, getAllUserInfo, removeUser }
-module.exports = { insertUser, loginUser }
+module.exports = { insertUser, loginUser, getAllUserInfo, removeUser }

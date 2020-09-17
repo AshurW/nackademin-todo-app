@@ -61,7 +61,7 @@ async function insertUser(user) {
     }
 }
 
-function loginUser(user) {
+async function loginUser(user) {
     // return new Promise((resolve, reject) => {
     //     userCollection.findOne({ username: user.username }, (err, doc) => {
     //         if (err) {
@@ -85,9 +85,19 @@ function loginUser(user) {
     //     })
     // })
     try {
-        
+        const userData = await User.findOne({username: user.username})
+        console.log(userData)
+        const validPassword = bcrypt.compareSync(user.password, userData.password)
+        if(!validPassword) { throw new Error('Wrong password') }
+        const dataToToken = {id: userData._id, username: userData.username, role: userData.role}
+        const token = jwt.sign(dataToToken, jwtSecret, { expiresIn: '1h' })
+        return {
+            message: 'login success',
+            token
+        }
     } catch (error) {
-        
+        // console.log(error)
+        return {message: 'something is wrong'}
     }
 }
 
@@ -107,4 +117,5 @@ function loginUser(user) {
 //     await userCollection.remove({_id: userId})
 // }
 
-module.exports = { userCollection, insertUser, loginUser, getAllUserInfo, removeUser }
+// module.exports = { userCollection, insertUser, loginUser, getAllUserInfo, removeUser }
+module.exports = { insertUser, loginUser }

@@ -9,8 +9,8 @@ async function connect() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         }, () => console.log('connected to STAGE/PROD DB'))
-    } else if (process.env.ENV === 'TEST') {
-        mongoMemmory = new MongoMemoryServer()
+    } else if (process.env.ENV === 'TEST' || process.env.ENV === 'DEV') {
+        mongoMemmory = new MongoMemoryServer({ binary: { version: '4.4.1' } })
         let uri = mongoMemmory.getUri()
         await mongoose.connect(uri, {
             useNewUrlParser: true,

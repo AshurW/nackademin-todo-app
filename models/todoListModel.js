@@ -3,23 +3,6 @@ const mongoose = require('mongoose')
 
 const todoModel = require('./todoModel')
 
-// const dataStore = require('nedb')
-// var todoListCollection
-
-// if (process.env.ENV === 'TEST') {
-//     var todoListCollection = new dataStore({
-//         filename: __dirname + '/../database/test/todoList.db',
-//         autoload: true,
-//         timestampData: true
-//     });
-// } else {
-//     var todoListCollection = new dataStore({
-//         filename: __dirname + '/../database/todoList.db',
-//         autoload: true,
-//         timestampData: true
-//     });
-// }
-
 const todoListSchema = new mongoose.Schema({
     todoListName: String,
     todoArray: Array,

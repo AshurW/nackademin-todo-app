@@ -1,22 +1,5 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-// const dataStore = require('nedb');
-
-// var todoCollection
-
-// if (process.env.ENV === 'TEST') {
-//     var todoCollection = new dataStore({
-//         filename: __dirname + '/../database/test/todo.db',
-//         autoload: true,
-//         timestampData: true
-//     });
-// } else {
-//     var todoCollection = new dataStore({
-//         filename: __dirname + '/../database/todo.db',
-//         autoload: true,
-//         timestampData: true
-//     });
-// }
 
 const TodoSchema = new mongoose.Schema({
     title: String,
@@ -77,7 +60,7 @@ async function updateTodoDone(id, done) {
     }
 }
 
-async function updateTodoTitle(id, title, user) {
+async function updateTodoTitle(id, title) {
     try {
         const result = await Todo.updateOne({ _id: id }, { title })
         return { message: 'todo title updated', result }
@@ -88,7 +71,7 @@ async function updateTodoTitle(id, title, user) {
 
 async function removeAllCreatedBy(userId) {
     try {
-        const result = await Todo.deletfindByIdAndDeleteeMany(userId)
+        const result = await Todo.deleteMany({createdBy: userId})
         return { message: 'remove all todos createdBy', result }
     } catch (error) {
         return { message: 'something is wrong' }

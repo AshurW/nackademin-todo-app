@@ -7,23 +7,6 @@ const jwtSecret = 'this is a secret'
 const todoListModel = require('../models/todoListModel')
 const todoModel = require('../models/todoModel')
 
-// const dataStore = require('nedb')
-// var userCollection
-
-// if (process.env.ENV === 'TEST') {
-//     var userCollection = new dataStore({
-//         filename: __dirname + '/../database/test/user.db',
-//         autoload: true,
-//         timestampData: true
-//     });
-// } else {
-//     var userCollection = new dataStore({
-//         filename: __dirname + '/../database/user.db',
-//         autoload: true,
-//         timestampData: true
-//     });
-// }
-
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -37,7 +20,7 @@ async function insertUser(user) {
         const newUser = {
             username: user.username,
             password: bcrypt.hashSync(user.password, 10),
-            role: user.role
+            role: user.role || 'user'
         }
         const result = await User.create(newUser)
         return {
@@ -80,7 +63,7 @@ async function getAllUserInfo(userInfo) {
 
 async function removeUser(userId) {
     try {
-        const result = await User.deleteOne({_id: userId})
+        const result = await User.findByIdAndDelete(userId)
         return { message: 'User is removed', result }
     } catch (error) {
          return { message: 'something is wrong' }

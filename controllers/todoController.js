@@ -17,9 +17,9 @@ async function deleteTodo(req, res) {
     if (req.user.role !== 'admin') {
         const docs = await todoModel.findOneTodo(todoId)
         if (docs.createdBy !== req.user._id) return res.json({ message: 'You cant do that' })
-        return res.json(await todoModel.removeTodo(todoId, user))
+        return res.json(await todoModel.removeTodo(todoId))
     }
-    return res.json(await todoModel.removeTodo(todoId, user))
+    return res.json(await todoModel.removeTodo(todoId))
 }
 
 async function checkTodo(req, res) {

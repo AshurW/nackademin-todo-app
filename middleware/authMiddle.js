@@ -12,7 +12,6 @@ function isAuthenticated(req, res, next) {
         req.user = payload
         next()
     } catch (error) {
-        console.log(error)
         res.sendStatus(403)
     }
 }

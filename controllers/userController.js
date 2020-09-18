@@ -12,7 +12,6 @@ async function loginUser(req, res) {
         const user = { username: req.body.username, password: req.body.password }
         res.json(await userModel.loginUser(user))
     } catch (error) {
-        console.log(error)
         res.send('user doesnt exist')
     }
 

@@ -67,10 +67,6 @@ describe('Full on crud integreration test', function () {
             .then(function (res) {
                 expect(res).to.be.json
                 expect(res).to.have.status(200)
-                // expect(res.body).to.include({
-                //     todoListName: createTodoList.todoListName,
-                //     createdBy: userId
-                // })
             })
     })
     it('should get the todoList and all of its todo', async function () {
@@ -90,7 +86,6 @@ describe('Full on crud integreration test', function () {
             .then(function (res) {
                 expect(res).to.be.json
                 expect(res).to.have.status(200)
-                // console.log(res.body.todoArray.length)
                 expect(res.body).to.include({
                     todoListName: todoList.todoListName,
                     createdBy: userId

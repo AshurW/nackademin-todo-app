@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const { MongoMemoryServer } = require('mongodb-memory-server')
 let mongoMemmory
 
-async function connect () {
-    if (process.env.ENV === 'STAGE' || process.env.ENV === 'PROD' ) {
+async function connect() {
+    if (process.env.ENV === 'STAGE' || process.env.ENV === 'PROD') {
         await mongoose.connect(process.env.DB_CONNECTION, {
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -19,11 +19,11 @@ async function connect () {
     }
 }
 
-async function disconnect () {
-    if(process.env.ENV === 'TEST' || process.env.ENV === 'DEV') {
-        await mongoMemmory.stop()
-    } 
+async function disconnect() {
     await mongoose.disconnect()
+    if (process.env.ENV === 'TEST' || process.env.ENV === 'DEV') {
+        await mongoMemmory.stop()
+    }
 }
 
 

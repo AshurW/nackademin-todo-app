@@ -33,17 +33,6 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema)
 
 async function insertUser(user) {
-    // return new Promise((resolve, reject) => {
-    //     bcrypt.hash(user.password, 10, async (err, hashedPassword) => {
-    //         const newUser = { username: user.username, password: hashedPassword, role: user.role }
-    //         userCollection.insert(newUser, (err, newDoc) => {
-    //             if (err) {
-    //                 console.log(err)
-    //             }
-    //             resolve(newDoc)
-    //         })
-    //     })
-    // })
     try {
         const newUser = {
             username: user.username,
@@ -62,31 +51,8 @@ async function insertUser(user) {
 }
 
 async function loginUser(user) {
-    // return new Promise((resolve, reject) => {
-    //     userCollection.findOne({ username: user.username }, (err, doc) => {
-    //         if (err) {
-    //             console.log(err)
-    //         }
-    //         if (doc) {
-    //             bcrypt.compare(user.password, doc.password, (err, result) => {
-    //                 if (!result) {
-    //                     resolve('wrong user information')
-    //                 } else {
-    //                     const token = jwt.sign(doc, jwtSecret, { expiresIn: '1h' })
-    //                     resolve({
-    //                         message: 'login success',
-    //                         token
-    //                     })
-    //                 }
-    //             })
-    //         } else {
-    //             reject('user doesnt exist')
-    //         }
-    //     })
-    // })
     try {
         const userData = await User.findOne({ username: user.username })
-        console.log(userData)
         const validPassword = bcrypt.compareSync(user.password, userData.password)
         if (!validPassword) { throw new Error('Wrong password') }
         const dataToToken = { _id: userData._id, username: userData.username, role: userData.role }
@@ -113,7 +79,6 @@ async function getAllUserInfo(userInfo) {
 }
 
 async function removeUser(userId) {
-    // await userCollection.remove({ _id: userId })
     try {
         const result = await User.deleteOne({_id: userId})
         return { message: 'User is removed', result }

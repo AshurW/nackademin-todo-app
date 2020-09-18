@@ -6,7 +6,7 @@ const todoListModel = require('../../models/todoListModel')
 const todoModel = require('../../models/todoModel')
 const userModel = require('../../models/userModel')
 
-describe('CRUD on todolist model', () => {
+describe('unit test CRUD on todolist model', () => {
     before(async () => {
         await db.connect()
     })
@@ -40,8 +40,6 @@ describe('CRUD on todolist model', () => {
         const insertTodoInList = await todoListModel.insertTodoInList({ todoListId: createdTodoList._id, todoId: todo._id })
 
         //assert
-        console.log(insertTodoInList)
-        console.log(todo)
         expect(insertTodoInList.todoArray).to.include(todo._id)
     })
     it('should get todoList', async () => {
@@ -77,7 +75,6 @@ describe('CRUD on todolist model', () => {
          const removedTodoList = await todoListModel.removeTodoListAndAllTodo(arrangeData._id)
 
          //assert
-         console.log(removedTodoList)
          expect(removedTodoList.message).to.be.equal('Removed all todos and the list')
     })
 })

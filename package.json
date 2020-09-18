@@ -9,6 +9,11 @@
     "uTest": "cross-env ENV=TEST && mocha ./test/unit/ --exit -b",
     "iTest": "cross-env ENV=TEST && mocha ./test/integration/ --exit"
   },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "4.4.1"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AshurW/nackademin-todo-app.git"
